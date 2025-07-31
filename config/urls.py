@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from . import views  # 导入视图函数
+from apps.users import views  # 导入视图函数
 
 urlpatterns = [
     path('admin/', admin.site.urls),
