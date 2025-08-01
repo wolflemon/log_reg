@@ -15,6 +15,7 @@ pymysql.install_as_MySQLdb()  # 强制将PyMySQL伪装成MySQLdb
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,7 +32,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['106.52.220.222', 'localhost', '127.0.0.1']
 
-
+# 强制指定.env文件路径（替换为你的实际路径）
+env_path = Path(__file__).parent.parent / '.env'  # 关键：定位到项目根目录的.env
+load_dotenv(env_path)  # 加载指定路径的.env文件
 # Application definition
 
 INSTALLED_APPS = [
