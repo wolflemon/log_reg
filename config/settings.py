@@ -90,6 +90,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+#以下配置在生产环境中使用，推送时请注释开发环境配置代码并解除此段注释
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -101,7 +102,26 @@ DATABASES = {
     }
 }
 
-
+'''
+#以下配置在生产环境中使用，推送时请解除开发环境配置代码注释并注释此段
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'db2025',  # 数据库名
+        'USER': 'course_user',           # 数据库用户名
+        'PASSWORD': 'ytt050330',      # 数据库密码
+        'HOST': 'localhost',             # 数据库主机（固定写死）
+        'PORT': '3306',                  # 端口（固定写死）
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+            'connect_timeout': 10,
+        }
+    }
+}
+CSRF_COOKIE_SECURE = False  # 本地HTTP环境禁用HTTPS检查
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000']  # 添加信任的源
+#_______________#
+'''
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
@@ -147,9 +167,43 @@ LOGOUT_REDIRECT_URL = '/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',  # 告诉Django静态文件存放目录
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_URL = '/media/'  
+MEDIA_ROOT = BASE_DIR / 'media'  
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'backend.log',  # 日志文件保存路径
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file', 'console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'apps.users': {  # 你的用户模块日志
+            'handlers': ['file', 'console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}

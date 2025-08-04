@@ -7,7 +7,8 @@ Admin 后台：http://127.0.0.1:8000/admin（使用超级用户登录）
 注册页面：http://127.0.0.1:8000/accounts/signup/
 
 首页：http://127.0.0.1:8000/
-
+本地激活虚拟环境
+.\venv\Scripts\Activate.ps1
 服务器激活虚拟环境（命令行前显示(venv)）
 source venv/bin/activate
 验证激活成功

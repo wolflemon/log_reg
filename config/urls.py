@@ -17,9 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from apps.users import views  # 导入视图函数
+from django.conf import settings  
+from django.conf.urls.static import static  
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', views.home_view, name='home'),  # 使用视图函数
-]
+    path('users/', include('apps.users.urls')),
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
