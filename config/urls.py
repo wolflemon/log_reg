@@ -33,5 +33,5 @@ urlpatterns = [
     path('accounts/password_change/',
          account_views.PasswordChangeView.as_view(),
          name='account_change_password'), # 原accounts/password/change路径深度造成static文件获取错误
-    path('', home_view, name='home'),  # 首页（图谱）
+    
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -2,16 +2,110 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required  
 from django.shortcuts import render, redirect  
 from .forms import ProfileUpdateForm  
-from django.http import JsonResponse
+from django.contrib.auth.management.commands.changepassword import UserModel
+from django.http import JsonResponse, HttpResponse
 from PIL import Image
 import os
 from io import BytesIO
+from py2neo import Graph
+from django.http import Http404
 
 from django.conf import settings
 import time
 from django.contrib import messages  # 添加消息框架
 import logging
 logger = logging.getLogger(__name__)
+
+graph = Graph("bolt://localhost:7687", auth=("neo4j", "12345678"))
+def get_neo4j_data(request):  # 获取neo4j的节点（除了labels为Course的节点）
+    print("--------------------------------------------------------------------------------------------------")  # 调试信息
+    search_term = request.GET.get('search', '').strip()
+
+    nodes = []
+    edges = []
+
+    # 基础查询
+    node_query = '''
+        MATCH (n)
+        WHERE NOT 'Course' IN labels(n)
+        RETURN id(n) AS id, n.name AS name, labels(n) AS labels'''
+    edge_query = "MATCH (n)-[r]->(m) RETURN id(r) AS id, id(n) AS source, id(m) AS target, type(r) AS type"
+
+    if search_term:
+        # 搜索匹配节点及其子节点
+        node_query = f"""
+        MATCH (n)
+        WHERE toLower(n.name) CONTAINS toLower('{search_term}')
+        WITH collect(n) AS matchedNodes
+        UNWIND matchedNodes AS n
+        MATCH path=(m)-[*0..3]->(n)
+        UNWIND nodes(path) AS node
+        RETURN DISTINCT id(node) AS id, node.name AS name, labels(node) AS labels
+        """
+
+        edge_query = f"""
+        MATCH (n)
+        WHERE toLower(n.name) CONTAINS toLower('{search_term}')
+        WITH collect(n) AS matchedNodes
+        UNWIND matchedNodes AS n
+        MATCH path=(m)-[r*0..3]->(n)
+        UNWIND relationships(path) AS rel
+        RETURN DISTINCT id(rel) AS id, id(startNode(rel)) AS source, id(endNode(rel)) AS target, type(rel) AS type
+        """
+
+    # 执行查询
+    node_results = graph.run(node_query)
+    for record in node_results:
+        nodes.append({
+            "id": record["id"],
+            "name": record["name"],
+            "type": record["labels"][0] if record["labels"] else "default"
+        })
+        print("search_node: ", record)  # 调试信息
+
+    print(nodes)
+
+    edge_results = graph.run(edge_query)
+    for record in edge_results:
+        edges.append({
+            "id": record["id"],
+            "from": record["source"],
+            "to": record["target"],
+            "type": record["type"]
+        })
+        print("search_edge: ", record)  # 调试信息
+
+    if not nodes:  # 无结果时
+        print(f"未找到包含'{search_term}'的节点")
+        return JsonResponse({
+            "nodes": [],
+            "edges": [],
+            "message": f"未找到包含'{search_term}'的节点"
+        }, status=200)
+
+    return JsonResponse({"nodes": nodes, "edges": edges, "search_term": search_term})
+
+def click_node(request):
+    node_id = request.GET.get('node_id')
+    if not node_id or not node_id.isdigit():
+        raise Http404("无效的节点ID")
+
+    query = """
+        MATCH (n) WHERE ID(n) = $node_id
+        OPTIONAL MATCH (n)<-[:SUB_TOPIC_OF*0..2]-(midNode)<-[:BELONGS_TO]-(course:Course)
+        RETURN n, COLLECT(DISTINCT course) AS courses
+        """
+
+    result = graph.run(query, node_id=int(node_id)).data()
+
+    if not result:
+        raise Http404("节点不存在")
+
+    data = result[0]
+    return render(request, 'click-node.html', {
+        'current_node': dict(data['n']),
+        'courses': [dict(course) for course in data['courses']]
+    })
 
 def home_view(request):
     """主页视图函数"""
