@@ -35,3 +35,22 @@ sudo systemctl enable course-platform
 
 验证状态（应显示active running）
 sudo systemctl status course-platform
+
+# 复制应用到现有项目
+cp -r colleague_project/backend/apps/new_app /opt/course-recommendation-platform/apps/
+
+# 添加到INSTALLED_APPS（settings.py）
+INSTALLED_APPS = [
+    # ...现有应用...
+    'apps.new_app',  # 添加新应用
+]
+
+# 合并URL路由（config/urls.py）
+urlpatterns = [
+    # ...现有路由...
+    path('new_app/', include('apps.new_app.urls')),  # 添加新应用路由
+]
+
+进行ettings.py同目录下文件的迁移 1/1
+复制templates文件夹中内容 1/1
+复制static文件夹中的内容 1/1

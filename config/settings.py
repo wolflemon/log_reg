@@ -103,7 +103,7 @@ DATABASES = {
 }
 
 '''
-#以下配置在生产环境中使用，推送时请解除开发环境配置代码注释并注释此段
+#以下配置在开发环境中使用，推送时请解除生产环境配置代码注释并注释此段
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -207,3 +207,8 @@ LOGGING = {
         },
     },
 }
+
+# 邮箱
+# 邮箱连接有误，先这样
+ACCOUNT_EMAIL_VERIFICATION = "none"  # 禁用邮箱验证
+ACCOUNT_EMAIL_REQUIRED = False       # 不强制要求邮箱（根据你的需求决定）

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>首页 - Django认证系统</title>
+</head>
+<body>
+    <h1>欢迎来到课程推荐平台</h1>
+    
+    {% if user.is_authenticated %}
+        <p>当前用户: {{ user.username }}</p>
+        <a href="{% url 'account_logout' %}">退出登录</a>
+        <a href="{% url 'users:profile' %}">个人资料</a>
+
+    {% else %}
+        <a href="{% url 'account_login' %}">登录</a>
+        <a href="{% url 'account_signup' %}">注册</a>
+    {% endif %}
+</body>
+</html>
