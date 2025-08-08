@@ -1,0 +1,702 @@
+[
+  {
+    "title": "微积分",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e5beaee7a7af",
+    "description": "本课程讲解微积分相关的基础概念与应用。",
+    "score": 4.6
+  },
+  {
+    "title": "线性代数",
+    "platform": "网易云课堂",
+    "url": "https://study.example.com/e7babfe680a7",
+    "description": "本课程讲解线性代数相关的基础概念与应用。",
+    "score": 4.3
+  },
+  {
+    "title": "概率论",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e6a682e78e87",
+    "description": "本课程讲解概率论相关的基础概念与应用。",
+    "score": 4.8
+  },
+  {
+    "title": "数理统计",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e695b0e79086",
+    "description": "本课程讲解数理统计相关的基础概念与应用。",
+    "score": 4.6
+  },
+  {
+    "title": "离散数学",
+    "platform": "bilibili",
+    "url": "https://bilibili.example.com/e7a6bbe695a3",
+    "description": "本课程讲解离散数学相关的基础概念与应用。",
+    "score": 4.9
+  },
+  {
+    "title": "力学",
+    "platform": "网易云课堂",
+    "url": "https://study.example.com/e58a9be5ada6",
+    "description": "本课程讲解力学相关的基础概念与应用。",
+    "score": 4.4
+  },
+  {
+    "title": "电磁学",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e794b5e7a381",
+    "description": "本课程讲解电磁学相关的基础概念与应用。",
+    "score": 4.4
+  },
+  {
+    "title": "热学",
+    "platform": "bilibili",
+    "url": "https://bilibili.example.com/e783ade5ada6",
+    "description": "本课程讲解热学相关的基础概念与应用。",
+    "score": 4.7
+  },
+  {
+    "title": "光学",
+    "platform": "bilibili",
+    "url": "https://bilibili.example.com/e58589e5ada6",
+    "description": "本课程讲解光学相关的基础概念与应用。",
+    "score": 4.8
+  },
+  {
+    "title": "量子物理",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e9878fe5ad90",
+    "description": "本课程讲解量子物理相关的基础概念与应用。",
+    "score": 4.4
+  },
+  {
+    "title": "算法",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e7ae97e6b395",
+    "description": "本课程讲解算法相关的基础概念与应用。",
+    "score": 4.5
+  },
+  {
+    "title": "人工智能",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e4babae5b7a5",
+    "description": "本课程讲解人工智能相关的基础概念与应用。",
+    "score": 4.7
+  },
+  {
+    "title": "数据库",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e695b0e68dae",
+    "description": "本课程讲解数据库相关的基础概念与应用。",
+    "score": 4.4
+  },
+  {
+    "title": "图形学",
+    "platform": "网易云课堂",
+    "url": "https://study.example.com/e59bbee5bda2",
+    "description": "本课程讲解图形学相关的基础概念与应用。",
+    "score": 4.6
+  },
+  {
+    "title": "网络安全",
+    "platform": "bilibili",
+    "url": "https://bilibili.example.com/e7bd91e7bb9c",
+    "description": "本课程讲解网络安全相关的基础概念与应用。",
+    "score": 4.8
+  },
+  {
+    "title": "英语听说",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e88bb1e8afad",
+    "description": "本课程讲解英语听说相关的基础概念与应用。",
+    "score": 4.4
+  },
+  {
+    "title": "日语初级",
+    "platform": "bilibili",
+    "url": "https://bilibili.example.com/e697a5e8afad",
+    "description": "本课程讲解日语初级相关的基础概念与应用。",
+    "score": 4.9
+  },
+  {
+    "title": "翻译基础",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e7bfbbe8af91",
+    "description": "本课程讲解翻译基础相关的基础概念与应用。",
+    "score": 4.5
+  },
+  {
+    "title": "英语写作",
+    "platform": "bilibili",
+    "url": "https://bilibili.example.com/e88bb1e8afad",
+    "description": "本课程讲解英语写作相关的基础概念与应用。",
+    "score": 4.8
+  },
+  {
+    "title": "阅读理解",
+    "platform": "bilibili",
+    "url": "https://bilibili.example.com/e99885e8afbb",
+    "description": "本课程讲解阅读理解相关的基础概念与应用。",
+    "score": 4.5
+  },
+  {
+    "title": "经济学",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e7bb8fe6b58e",
+    "description": "本课程讲解经济学相关的基础概念与应用。",
+    "score": 4.9
+  },
+  {
+    "title": "会计",
+    "platform": "网易云课堂",
+    "url": "https://study.example.com/e4bc9ae8aea1",
+    "description": "本课程讲解会计相关的基础概念与应用。",
+    "score": 4.5
+  },
+  {
+    "title": "审计",
+    "platform": "网易云课堂",
+    "url": "https://study.example.com/e5aea1e8aea1",
+    "description": "本课程讲解审计相关的基础概念与应用。",
+    "score": 4.5
+  },
+  {
+    "title": "金融",
+    "platform": "网易云课堂",
+    "url": "https://study.example.com/e98791e89e8d",
+    "description": "本课程讲解金融相关的基础概念与应用。",
+    "score": 4.9
+  },
+  {
+    "title": "管理学",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e7aea1e79086",
+    "description": "本课程讲解管理学相关的基础概念与应用。",
+    "score": 4.8
+  },
+  {
+    "title": "中国近现代史",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e4b8ade59bbd",
+    "description": "本课程讲解中国近现代史相关的基础概念与应用。",
+    "score": 4.5
+  },
+  {
+    "title": "马克思主义",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e9a9ace5858b",
+    "description": "本课程讲解马克思主义相关的基础概念与应用。",
+    "score": 4.5
+  },
+  {
+    "title": "伦理学",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e4bca6e79086",
+    "description": "本课程讲解伦理学相关的基础概念与应用。",
+    "score": 4.8
+  },
+  {
+    "title": "普通逻辑",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e699aee9809a",
+    "description": "本课程讲解普通逻辑相关的基础概念与应用。",
+    "score": 4.3
+  },
+  {
+    "title": "哲学基础",
+    "platform": "网易云课堂",
+    "url": "https://study.example.com/e593b2e5ada6",
+    "description": "本课程讲解哲学基础相关的基础概念与应用。",
+    "score": 4.6
+  },
+  {
+    "title": "美术鉴赏",
+    "platform": "网易云课堂",
+    "url": "https://study.example.com/e7be8ee69caf",
+    "description": "本课程讲解美术鉴赏相关的基础概念与应用。",
+    "score": 4.5
+  },
+  {
+    "title": "音乐理论",
+    "platform": "bilibili",
+    "url": "https://bilibili.example.com/e99fb3e4b990",
+    "description": "本课程讲解音乐理论相关的基础概念与应用。",
+    "score": 4.5
+  },
+  {
+    "title": "舞蹈艺术",
+    "platform": "网易云课堂",
+    "url": "https://study.example.com/e8889ee8b988",
+    "description": "本课程讲解舞蹈艺术相关的基础概念与应用。",
+    "score": 4.4
+  },
+  {
+    "title": "摄影基础",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e69184e5bdb1",
+    "description": "本课程讲解摄影基础相关的基础概念与应用。",
+    "score": 4.3
+  },
+  {
+    "title": "艺术史",
+    "platform": "网易云课堂",
+    "url": "https://study.example.com/e889bae69caf",
+    "description": "本课程讲解艺术史相关的基础概念与应用。",
+    "score": 4.6
+  },
+  {
+    "title": "生物化学",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e7949fe789a9",
+    "description": "本课程讲解生物化学相关的基础概念与应用。",
+    "score": 4.4
+  },
+  {
+    "title": "细胞生物",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e7bb86e8839e",
+    "description": "本课程讲解细胞生物相关的基础概念与应用。",
+    "score": 4.9
+  },
+  {
+    "title": "生态学",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e7949fe68081",
+    "description": "本课程讲解生态学相关的基础概念与应用。",
+    "score": 4.9
+  },
+  {
+    "title": "遗传学",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e98197e4bca0",
+    "description": "本课程讲解遗传学相关的基础概念与应用。",
+    "score": 4.5
+  },
+  {
+    "title": "进化论",
+    "platform": "网易云课堂",
+    "url": "https://study.example.com/e8bf9be58c96",
+    "description": "本课程讲解进化论相关的基础概念与应用。",
+    "score": 4.8
+  },
+  {
+    "title": "心理学",
+    "platform": "bilibili",
+    "url": "https://bilibili.example.com/e5bf83e79086",
+    "description": "本课程讲解心理学相关的基础概念与应用。",
+    "score": 4.8
+  },
+  {
+    "title": "教育学",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e69599e882b2",
+    "description": "本课程讲解教育学相关的基础概念与应用。",
+    "score": 4.8
+  },
+  {
+    "title": "教学设计",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e69599e5ada6",
+    "description": "本课程讲解教学设计相关的基础概念与应用。",
+    "score": 4.5
+  },
+  {
+    "title": "认知科学",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e8aea4e79fa5",
+    "description": "本课程讲解认知科学相关的基础概念与应用。",
+    "score": 4.5
+  },
+  {
+    "title": "学习理论",
+    "platform": "bilibili",
+    "url": "https://bilibili.example.com/e5ada6e4b9a0",
+    "description": "本课程讲解学习理论相关的基础概念与应用。",
+    "score": 4.5
+  },
+  {
+    "title": "微积分",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e5beaee7a7af",
+    "description": "本课程讲解微积分相关的基础概念与应用。",
+    "score": 4.6
+  },
+  {
+    "title": "线性代数",
+    "platform": "bilibili",
+    "url": "https://bilibili.example.com/e7babfe680a7",
+    "description": "本课程讲解线性代数相关的基础概念与应用。",
+    "score": 4.5
+  },
+  {
+    "title": "概率论",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e6a682e78e87",
+    "description": "本课程讲解概率论相关的基础概念与应用。",
+    "score": 4.7
+  },
+  {
+    "title": "数理统计",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e695b0e79086",
+    "description": "本课程讲解数理统计相关的基础概念与应用。",
+    "score": 4.9
+  },
+  {
+    "title": "离散数学",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e7a6bbe695a3",
+    "description": "本课程讲解离散数学相关的基础概念与应用。",
+    "score": 4.6
+  },
+  {
+    "title": "力学",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e58a9be5ada6",
+    "description": "本课程讲解力学相关的基础概念与应用。",
+    "score": 4.7
+  },
+  {
+    "title": "电磁学",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e794b5e7a381",
+    "description": "本课程讲解电磁学相关的基础概念与应用。",
+    "score": 4.8
+  },
+  {
+    "title": "热学",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e783ade5ada6",
+    "description": "本课程讲解热学相关的基础概念与应用。",
+    "score": 4.6
+  },
+  {
+    "title": "光学",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e58589e5ada6",
+    "description": "本课程讲解光学相关的基础概念与应用。",
+    "score": 4.9
+  },
+  {
+    "title": "量子物理",
+    "platform": "bilibili",
+    "url": "https://bilibili.example.com/e9878fe5ad90",
+    "description": "本课程讲解量子物理相关的基础概念与应用。",
+    "score": 4.6
+  },
+  {
+    "title": "算法",
+    "platform": "网易云课堂",
+    "url": "https://study.example.com/e7ae97e6b395",
+    "description": "本课程讲解算法相关的基础概念与应用。",
+    "score": 4.8
+  },
+  {
+    "title": "人工智能",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e4babae5b7a5",
+    "description": "本课程讲解人工智能相关的基础概念与应用。",
+    "score": 4.8
+  },
+  {
+    "title": "数据库",
+    "platform": "bilibili",
+    "url": "https://bilibili.example.com/e695b0e68dae",
+    "description": "本课程讲解数据库相关的基础概念与应用。",
+    "score": 4.7
+  },
+  {
+    "title": "图形学",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e59bbee5bda2",
+    "description": "本课程讲解图形学相关的基础概念与应用。",
+    "score": 4.5
+  },
+  {
+    "title": "网络安全",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e7bd91e7bb9c",
+    "description": "本课程讲解网络安全相关的基础概念与应用。",
+    "score": 4.4
+  },
+  {
+    "title": "英语听说",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e88bb1e8afad",
+    "description": "本课程讲解英语听说相关的基础概念与应用。",
+    "score": 4.7
+  },
+  {
+    "title": "日语初级",
+    "platform": "bilibili",
+    "url": "https://bilibili.example.com/e697a5e8afad",
+    "description": "本课程讲解日语初级相关的基础概念与应用。",
+    "score": 4.8
+  },
+  {
+    "title": "翻译基础",
+    "platform": "bilibili",
+    "url": "https://bilibili.example.com/e7bfbbe8af91",
+    "description": "本课程讲解翻译基础相关的基础概念与应用。",
+    "score": 4.8
+  },
+  {
+    "title": "英语写作",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e88bb1e8afad",
+    "description": "本课程讲解英语写作相关的基础概念与应用。",
+    "score": 4.8
+  },
+  {
+    "title": "阅读理解",
+    "platform": "bilibili",
+    "url": "https://bilibili.example.com/e99885e8afbb",
+    "description": "本课程讲解阅读理解相关的基础概念与应用。",
+    "score": 4.9
+  },
+  {
+    "title": "经济学",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e7bb8fe6b58e",
+    "description": "本课程讲解经济学相关的基础概念与应用。",
+    "score": 4.6
+  },
+  {
+    "title": "会计",
+    "platform": "网易云课堂",
+    "url": "https://study.example.com/e4bc9ae8aea1",
+    "description": "本课程讲解会计相关的基础概念与应用。",
+    "score": 4.4
+  },
+  {
+    "title": "审计",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e5aea1e8aea1",
+    "description": "本课程讲解审计相关的基础概念与应用。",
+    "score": 4.4
+  },
+  {
+    "title": "金融",
+    "platform": "网易云课堂",
+    "url": "https://study.example.com/e98791e89e8d",
+    "description": "本课程讲解金融相关的基础概念与应用。",
+    "score": 4.7
+  },
+  {
+    "title": "管理学",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e7aea1e79086",
+    "description": "本课程讲解管理学相关的基础概念与应用。",
+    "score": 4.9
+  },
+  {
+    "title": "中国近现代史",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e4b8ade59bbd",
+    "description": "本课程讲解中国近现代史相关的基础概念与应用。",
+    "score": 4.4
+  },
+  {
+    "title": "马克思主义",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e9a9ace5858b",
+    "description": "本课程讲解马克思主义相关的基础概念与应用。",
+    "score": 4.4
+  },
+  {
+    "title": "伦理学",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e4bca6e79086",
+    "description": "本课程讲解伦理学相关的基础概念与应用。",
+    "score": 4.5
+  },
+  {
+    "title": "普通逻辑",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e699aee9809a",
+    "description": "本课程讲解普通逻辑相关的基础概念与应用。",
+    "score": 4.5
+  },
+  {
+    "title": "哲学基础",
+    "platform": "网易云课堂",
+    "url": "https://study.example.com/e593b2e5ada6",
+    "description": "本课程讲解哲学基础相关的基础概念与应用。",
+    "score": 4.7
+  },
+  {
+    "title": "美术鉴赏",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e7be8ee69caf",
+    "description": "本课程讲解美术鉴赏相关的基础概念与应用。",
+    "score": 4.4
+  },
+  {
+    "title": "音乐理论",
+    "platform": "bilibili",
+    "url": "https://bilibili.example.com/e99fb3e4b990",
+    "description": "本课程讲解音乐理论相关的基础概念与应用。",
+    "score": 4.4
+  },
+  {
+    "title": "舞蹈艺术",
+    "platform": "bilibili",
+    "url": "https://bilibili.example.com/e8889ee8b988",
+    "description": "本课程讲解舞蹈艺术相关的基础概念与应用。",
+    "score": 4.7
+  },
+  {
+    "title": "摄影基础",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e69184e5bdb1",
+    "description": "本课程讲解摄影基础相关的基础概念与应用。",
+    "score": 4.9
+  },
+  {
+    "title": "艺术史",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e889bae69caf",
+    "description": "本课程讲解艺术史相关的基础概念与应用。",
+    "score": 4.6
+  },
+  {
+    "title": "生物化学",
+    "platform": "网易云课堂",
+    "url": "https://study.example.com/e7949fe789a9",
+    "description": "本课程讲解生物化学相关的基础概念与应用。",
+    "score": 4.3
+  },
+  {
+    "title": "细胞生物",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e7bb86e8839e",
+    "description": "本课程讲解细胞生物相关的基础概念与应用。",
+    "score": 4.7
+  },
+  {
+    "title": "生态学",
+    "platform": "网易云课堂",
+    "url": "https://study.example.com/e7949fe68081",
+    "description": "本课程讲解生态学相关的基础概念与应用。",
+    "score": 4.4
+  },
+  {
+    "title": "遗传学",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e98197e4bca0",
+    "description": "本课程讲解遗传学相关的基础概念与应用。",
+    "score": 4.3
+  },
+  {
+    "title": "进化论",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e8bf9be58c96",
+    "description": "本课程讲解进化论相关的基础概念与应用。",
+    "score": 4.4
+  },
+  {
+    "title": "心理学",
+    "platform": "网易云课堂",
+    "url": "https://study.example.com/e5bf83e79086",
+    "description": "本课程讲解心理学相关的基础概念与应用。",
+    "score": 4.6
+  },
+  {
+    "title": "教育学",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e69599e882b2",
+    "description": "本课程讲解教育学相关的基础概念与应用。",
+    "score": 4.8
+  },
+  {
+    "title": "教学设计",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e69599e5ada6",
+    "description": "本课程讲解教学设计相关的基础概念与应用。",
+    "score": 4.6
+  },
+  {
+    "title": "认知科学",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e8aea4e79fa5",
+    "description": "本课程讲解认知科学相关的基础概念与应用。",
+    "score": 4.5
+  },
+  {
+    "title": "学习理论",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e5ada6e4b9a0",
+    "description": "本课程讲解学习理论相关的基础概念与应用。",
+    "score": 4.8
+  },
+  {
+    "title": "微积分",
+    "platform": "网易云课堂",
+    "url": "https://study.example.com/e5beaee7a7af",
+    "description": "本课程讲解微积分相关的基础概念与应用。",
+    "score": 4.5
+  },
+  {
+    "title": "线性代数",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e7babfe680a7",
+    "description": "本课程讲解线性代数相关的基础概念与应用。",
+    "score": 4.6
+  },
+  {
+    "title": "概率论",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e6a682e78e87",
+    "description": "本课程讲解概率论相关的基础概念与应用。",
+    "score": 4.3
+  },
+  {
+    "title": "数理统计",
+    "platform": "慕课网",
+    "url": "https://imooc.example.com/e695b0e79086",
+    "description": "本课程讲解数理统计相关的基础概念与应用。",
+    "score": 4.5
+  },
+  {
+    "title": "离散数学",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e7a6bbe695a3",
+    "description": "本课程讲解离散数学相关的基础概念与应用。",
+    "score": 4.5
+  },
+  {
+    "title": "力学",
+    "platform": "bilibili",
+    "url": "https://bilibili.example.com/e58a9be5ada6",
+    "description": "本课程讲解力学相关的基础概念与应用。",
+    "score": 4.5
+  },
+  {
+    "title": "电磁学",
+    "platform": "bilibili",
+    "url": "https://bilibili.example.com/e794b5e7a381",
+    "description": "本课程讲解电磁学相关的基础概念与应用。",
+    "score": 4.8
+  },
+  {
+    "title": "热学",
+    "platform": "网易云课堂",
+    "url": "https://study.example.com/e783ade5ada6",
+    "description": "本课程讲解热学相关的基础概念与应用。",
+    "score": 4.3
+  },
+  {
+    "title": "光学",
+    "platform": "中国大学MOOC",
+    "url": "https://mooc.example.com/e58589e5ada6",
+    "description": "本课程讲解光学相关的基础概念与应用。",
+    "score": 4.4
+  },
+  {
+    "title": "量子物理",
+    "platform": "网易云课堂",
+    "url": "https://study.example.com/e9878fe5ad90",
+    "description": "本课程讲解量子物理相关的基础概念与应用。",
+    "score": 4.6
+  }
+]

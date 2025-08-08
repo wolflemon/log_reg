@@ -17,12 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from apps.users import views  # 导入视图函数
+
 from django.conf import settings  
 from django.conf.urls.static import static  
 from allauth.account import views as account_views
-
+from apps.users.views import get_neo4j_data  # 确保函数名称与views.py中一致
+from apps.users.views import click_node  # 确保函数名称与views.py中一致
+from apps.users.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/signup/', CustomSignupView.as_view(), name='account_signup'),
     path('accounts/', include('allauth.urls')),
     path('', views.home_view, name='home'),  # 使用视图函数
     path('users/', include('apps.users.urls')),
@@ -34,4 +38,20 @@ urlpatterns = [
          account_views.PasswordChangeView.as_view(),
          name='account_change_password'), # 原accounts/password/change路径深度造成static文件获取错误
     
+    path('accounts/signup/', CustomSignupView.as_view(), name='account_signup'),
+    
+    path('delete-node/', delete_node, name='delete_node'),
+
+# wsq新增：收藏功能
+path("favorite-course/", favorite_course, name="favorite_course"),
+path("my-favorites/", favorite_courses_view, name="favorite_courses"),
+path("unfavorite-course/", unfavorite_course, name="unfavorite_course"),
+
+path('add-child-node/', add_child_node, name='add_child_node'),
+path('update-node-name/', update_node_name, name='update_node_name'),
+path('add-course/', add_course, name='add_course'),
+path('get-graph-public-status/', get_graph_public_status, name='get_graph_public_status'),
+path('toggle-graph-public/', toggle_graph_public, name='toggle_graph_public'),
+path('recommend-users/', recommend_users, name='recommend_users'),
+path('view-public-graph/<str:user_id>/', view_public_graph, name='view_public_graph'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

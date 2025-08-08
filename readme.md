@@ -54,3 +54,6 @@ urlpatterns = [
 进行ettings.py同目录下文件的迁移 1/1
 复制templates文件夹中内容 1/1
 复制static文件夹中的内容 1/1
+
+数据库连接：bolt://localhost:7687（你的 Python 代码已配置）
+网页管理：访问 http://localhost:7474（使用密码12345678登录）

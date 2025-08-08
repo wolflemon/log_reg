@@ -1,3 +1,4 @@
+{% load static %} 
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +6,7 @@
     <link rel="stylesheet" href="/static/plugins/bootstrap-3.4.1-dist/css/bootstrap.min.css">
     <link href="/static/css/vis-network.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/dynamic/style.css">
-    <link rel="stylesheet" href="/static/plugins/font-awesome-4.7.0">
+    <link rel="stylesheet" href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}">
     <style>
         :root {
             --primary-color: #2c3e50;
@@ -347,6 +348,80 @@
             color: #e74c3c;
             background-color: #f5f5f5;
         }
+
+        /* 滑动开关完整样式 */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+/* 外壳：弹性布局，横向排列 */
+.switch-wrapper{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    cursor:pointer;
+    user-select:none;
+}
+
+/* 隐藏原生 checkbox */
+.switch-wrapper input{
+    opacity:0;
+    width:0;
+    height:0;
+    position:absolute;
+}
+
+/* 轨道 */
+.switch-wrapper .slider{
+    position:relative;
+    width:50px;
+    height:24px;
+    background:#ccc;
+    border-radius:24px;
+    transition:.4s;
+}
+
+/* 滑块 */
+.switch-wrapper .slider::before{
+    content:'';
+    position:absolute;
+    width:16px;
+    height:16px;
+    left:4px;
+    bottom:4px;
+    background:#fff;
+    border-radius:50%;
+    transition:.4s;
+}
+
+/* 开状态 */
+.switch-wrapper input:checked + .slider{
+    background:#2196F3;
+}
+.switch-wrapper input:checked + .slider::before{
+    transform:translateX(26px);
+}
+.label-text {
+    color: #b59aef;   /* ← 改成你想要的颜色即可 */
+    font-size: 14px;
+    margin-right: 6px;
+    transition: color .3s;
+}
+/* 文字变色 */
+.switch-wrapper input:checked + .slider + .label-text{
+    color:#2196F3;
+}
+.switch-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;                 /* 原来开关与文字的间距 */
+    transform: translate(6px, 4px); /* 右 4px、下 2px，按需改数值 */
+}
+
+
     </style>
 </head>
 <body>
@@ -387,6 +462,7 @@
                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                 </form>
 
+                
                 <ul class="nav navbar-nav navbar-right">
                     {#                    <li><a href="#">重置图谱</a></li>#}
                     <li class="dropdown">
@@ -395,7 +471,8 @@
                            aria-expanded="false">{{ user.username }} 个人中心<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{% url 'account_change_password' %}">修改密码</a></li>
-                            <li><a href="#">我的收藏夹</a></li>
+                            <li><a href="{% url 'favorite_courses' %}">我的收藏夹</a></li>
+                            <li><a href="{% url 'recommend_users' %}">每日推荐</a></li>
                             <li role="separator" class="divider"></li>
                             <li>
                                 <form method="post" action="/accounts/logout/">
@@ -415,6 +492,16 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <i class="fa fa-map-o"></i> 我的图谱
+
+                <label class="switch-wrapper">
+    <!-- 新增：整体平移的盒子 -->
+    <span class="switch-group">
+        <input type="checkbox" id="graphPublicSwitch">
+        <span class="slider"></span>
+        <span class="label-text">公开</span>
+    </span>
+</label>
+
                 <div class="graph-controls">
                     <button class="btn btn-sm btn-control" id="reset-graph" title="重置图谱">
                         <i class="glyphicon glyphicon-refresh"></i>
@@ -444,9 +531,85 @@
             </div>
             <div id="graph-container"></div>
         </div>
-
     </div>
 
+    <!-- 操作弹窗 -->
+    <div class="modal fade" id="nodeActionModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                    <h5 class="modal-title">节点操作</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="viewNodeBtn">
+                        <i class="fa fa-eye"></i> 查看课程
+                    </button>
+                    <button type="button" class="btn btn-danger" id="deleteNodeBtn">
+                        <i class="fa fa-trash"></i> 删除节点
+                    </button>
+                    <button type="button" class="btn btn-success" id="addChildNodeBtn">
+                        <i class="fa fa-plus"></i> 添加子节点
+                    </button>
+                    <button type="button" class="btn btn-warning" id="editNodeBtn">
+                        <i class="fa fa-edit"></i> 修改名称
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 添加子节点输入模态框 -->
+    <div class="modal fade" id="addChildNodeModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                    <h5 class="modal-title">添加子节点</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="childNodeName">子节点名称</label>
+                        <input type="text" class="form-control" id="childNodeName" placeholder="请输入子节点名称">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="confirmAddChildNode">确认添加</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 新增修改节点名称模态框 -->
+<div class="modal fade" id="editNodeModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+                <h5 class="modal-title">修改节点名称</h5>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="newNodeName">新名称</label>
+                    <input type="text" class="form-control" id="newNodeName" placeholder="请输入新名称">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="confirmEditNode">确认修改</button>
+            </div>
+        </div>
+    </div>
+</div>
+   
 {% else %}
     <!-- 未登录状态展示 -->
     <div class="auth-container">
@@ -466,6 +629,7 @@
 <script src="../static/plugins/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
 {% if user.is_authenticated %}
 <script>
+        
         // 原有的图谱渲染代码保持不变
         async function renderGraph(searchTerm = '') { // "软件"
             const url = searchTerm ? `/neo4j-data/?search=${encodeURIComponent(searchTerm)}` : '/neo4j-data/';
@@ -497,6 +661,7 @@
             const data = {
                 nodes: filteredNodes.map(node => {
                     let nodeColor;
+                    let nodeSize;
 
                     // 根据搜索词高亮
                     const isMatched = searchTerm &&
@@ -504,12 +669,16 @@
 
                     if (node.type === "Root") {
                         nodeColor = isMatched ? "#ff4757" : "#ff6f91";
+                        nodeSize = 15;
                     } else if (node.type === "Subject") {
                         nodeColor = isMatched ? "#ff6348" : "#ff9671";
+                        nodeSize = 11.5;
                     } else if (node.type === "Sub_subject") {
                         nodeColor = isMatched ? "#ffa502" : "#ffc75f";
+                        nodeSize = 9;
                     } else {
                         nodeColor = isMatched ? "#eccc68" : "#f9f871";
+                        nodeSize = 8.5;
                     }
 
                     return {
@@ -517,9 +686,9 @@
                         label: node.name,
                         type: node.type,
                         shape: "dot",
-                        size: isMatched ? 10 : 6,  // 匹配节点更大
+                        size: nodeSize,
                         color: nodeColor,
-                        borderWidth: isMatched ? 2 : 0,
+                        borderWidth: isMatched ? 4 : 1,
                         borderColor: "#000000",
                         shadow: {
                             enabled: true,
@@ -540,14 +709,23 @@
             };
 
             const options = {
+                layout: {
+                    randomSeed: 42, // 固定随机种子使布局稳定
+                    improvedLayout: true
+                },
                 interaction: {
                     zoomView: true,
                     dragView: true,
-                    dragNodes: true
+                    dragNodes: true,
+                    hover: true,
+                    
+                    tooltipDelay: 300,
+                    hideEdgesOnDrag: false
                 },
                 physics: {
-                    enabled: true
-                }
+                    enabled: true,
+
+                },
             };
 
             const network = new vis.Network(container, data, options);
@@ -619,16 +797,167 @@
                 });
             });
 
-            // 点击图谱节点会显示课程信息
+            // 全局变量存储当前操作的父节点ID
+            let selectedNodeId = null;
+
+            // 点击节点事件处理
             network.on("click", function (params) {
                 if (params.nodes.length > 0) {
-                    const nodeId = params.nodes[0];
-                    window.location.href = `/click-node/?node_id=${nodeId}`;
+                    selectedNodeId = params.nodes[0];
+                    // 获取节点数据用于显示
+                    const nodeData = data.nodes.find(n => n.id == selectedNodeId);
+                    $('#nodeActionModal .modal-title').text(`操作: ${nodeData.label}`);
+                    // 显示模态框
+                    $('#nodeActionModal').modal('show');
+                    params.event.preventDefault();
                 }
             });
+
+
+            // 查看节点按钮事件
+            $('#viewNodeBtn').off('click').on('click', function () {
+                window.location.href = `/click-node/?node_id=${selectedNodeId}`;
+            });
+
+            // 删除节点按钮事件
+            $('#deleteNodeBtn').off('click').on('click', function () {
+                if (confirm('确定要删除这个节点及其所有子节点吗？此操作不可恢复！')) {
+                    deleteNodeAndChildren(selectedNodeId).then(() => {
+                        $('#nodeActionModal').modal('hide');
+                        renderGraph(''); // 刷新图谱
+                    });
+                }
+            });
+
+            // 添加子节点按钮点击事件
+            $('#addChildNodeBtn').on('click', function () {
+                $('#nodeActionModal').modal('hide');
+                $('#addChildNodeModal').modal('show');
+            });
+
+            // 确认添加子节点 按钮点击事件
+            $('#confirmAddChildNode').off('click').on('click', function () {
+                addChildNodeHandler(selectedNodeId);
+            });
+            
+            // 修改节点名称按钮点击事件
+            $('#editNodeBtn').on('click', function() {
+                const nodeData = data.nodes.find(n => n.id == selectedNodeId);
+                $('#newNodeName').val(nodeData.label); // 填充当前名称
+                $('#nodeActionModal').modal('hide');
+                $('#editNodeModal').modal('show');
+            });
+            
+            // 确认修改按钮事件
+            $('#confirmEditNode').off('click').on('click', function() {
+                updateNodeName(selectedNodeId);
+            });
+        }// renderGraph末尾
+        
+        // 更新节点名称函数
+        async function updateNodeName(nodeId) {
+            const newName = $('#newNodeName').val().trim();
+            if (!newName) {
+                alert('请输入新名称');
+                return;
+            }
+                
+            try {
+                const response = await fetch('/update-node-name/', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        node_id: nodeId,
+                        new_name: newName
+                    })
+                });
+        
+                const result = await response.json();
+        
+                if (!result.success) {
+                    throw new Error(result.message || '更新失败');
+                }
+                alert('名称修改成功！');
+                renderGraph('')
+            } catch (error) {
+                console.error('修改节点名称出错:', error);
+                alert('修改名称时出错: ' + error.message);
+            } finally {
+                $('#editNodeModal').modal('hide');
+            }
         }
 
-        window.addEventListener("load", renderGraph(''));
+        async function addChildNodeHandler(selectedNodeId = 0) {
+            const childNodeName = $('#childNodeName').val().trim();
+            if (!childNodeName) {
+                alert('请输入子节点名称');
+                return;
+            }
+
+            try {
+                const response = await fetch('/add-child-node/', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        parent_id: selectedNodeId,
+                        child_name: childNodeName
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    $('#addChildNodeModal').modal('hide');
+                    $('#childNodeName').val(''); // 清空输入框
+                    renderGraph(''); // 刷新图谱
+                } else {
+                    throw new Error(result.message || '添加失败');
+                }
+            } catch (error) {
+                console.error('添加子节点出错:', error);
+                alert('添加失败: ' + error.message);
+            }
+        }
+
+        // 删除节点函数
+        async function deleteNodeAndChildren(nodeId) {
+            try {
+                const response = await fetch(`/delete-node/?node_id=${nodeId}`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}',  // 直接从Django模板获取
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const result = await response.json();
+
+                if (!result.success) {
+                    throw new Error(result.message || '删除失败');
+                }
+                alert('删除成功！');
+            } catch (error) {
+                console.error('删除节点出错:', error);
+                alert('删除节点时出错: ' + error.message);
+            }
+        }
+
+
+        // 初始化
+        window.addEventListener("load", function () {
+            renderGraph('');
+
+            // 模态框隐藏时清除选中节点
+            $('#nodeActionModal').on('hidden.bs.modal', function () {
+                selectedNodeId = null;
+            });
+        });
 
         // 添加搜索表单处理
         document.getElementById('search-form').addEventListener('submit', async function (e) {
@@ -636,6 +965,7 @@
             const searchTerm = document.getElementById('search-input').value.trim(); // 获取"软件"
 
             renderGraph(searchTerm); // 直接调用renderGraph
+            document.getElementById('search-input').value = '';
         });
 
         // 添加重置图谱按钮功能
@@ -646,6 +976,51 @@
     
 </script>
 {% endif %}
+<script>
+    function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // 查找csrftoken cookie
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+// 确保在getCookie函数之后
+document.addEventListener('DOMContentLoaded', function() {
+    // 获取当前开关状态
+    fetch('/get-graph-public-status/')
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById('graphPublicSwitch').checked = data.is_public;
+        });
+
+    // 开关切换事件
+    document.getElementById('graphPublicSwitch').addEventListener('change', function() {
+        const csrftoken = getCookie('csrftoken'); // 现在可以正确获取CSRF令牌
+        fetch('/toggle-graph-public/', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',  // 必须指定JSON类型
+        'X-CSRFToken': getCookie('csrftoken')
+    },
+    body: JSON.stringify({ is_public: this.checked })  // 确保数据被JSON.stringify处理
+})
+.then(res => res.json())
+.then(data => {
+    if (!data.success) {
+        alert('更新失败: ' + data.message);  // 此时会显示具体错误原因
+    }
+});
+    });
+});
+</script>
 <script src="../static/dynamic/script.js"></script> <!-- 动态背景的JS文件 -->
 </body>
 </html>

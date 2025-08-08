@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}课程推荐平台{% endblock %}</title>
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Font Awesome图标 -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- 配置Tailwind自定义颜色和字体 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF69B4', // 粉红色主色调
+                        secondary: '#FFB6C1', // 浅粉色
+                        accent: '#FF1493', // 深粉色强调色
+                        light: '#FFF0F5', // 粉色背景色
+                        dark: '#333333', // 深色文本
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- 自定义工具类 -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .nav-shadow {
+                box-shadow: 0 4px 15px rgba(255, 105, 180, 0.15);
+            }
+            .hover-scale {
+                transition: transform 0.3s ease;
+            }
+            .hover-scale:hover {
+                transform: scale(1.03);
+            }
+        }
+    </style>
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="bg-light text-dark font-sans">
+    <!-- 导航栏 -->
+    <nav class="bg-white nav-shadow fixed w-full z-10 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- 网站Logo -->
+            <a href="/" class="flex items-center space-x-2 hover-scale">
+                <i class="fa fa-heart text-primary text-2xl"></i>
+                <span class="text-xl font-bold text-primary">课程推荐平台</span>
+            </a>
+            
+            <!-- 桌面端导航链接 -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="/" class="font-medium hover:text-primary transition-colors">首页</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'users:profile' %}" class="font-medium hover:text-primary transition-colors">个人资料</a>
+                    <a href="{% url 'account_logout' %}" class="font-medium hover:text-primary transition-colors">退出登录</a>
+                {% else %}
+                    <a href="{% url 'account_login' %}" class="font-medium hover:text-primary transition-colors">登录</a>
+                    <a href="{% url 'account_signup' %}" class="bg-primary hover:bg-accent text-white px-4 py-2 rounded-full transition-colors">注册</a>
+                {% endif %}
+            </div>
+            
+            <!-- 移动端菜单按钮 -->
+            <button class="md:hidden text-primary text-xl" id="menuBtn">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div class="md:hidden hidden bg-white absolute w-full" id="mobileMenu">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="/" class="py-2 font-medium hover:text-primary transition-colors">首页</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'users:profile' %}" class="py-2 font-medium hover:text-primary transition-colors">个人资料</a>
+                    <a href="{% url 'account_logout' %}" class="py-2 font-medium hover:text-primary transition-colors">退出登录</a>
+                {% else %}
+                    <a href="{% url 'account_login' %}" class="py-2 font-medium hover:text-primary transition-colors">登录</a>
+                    <a href="{% url 'account_signup' %}" class="py-2 bg-primary text-white rounded-md text-center">注册</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容区域 -->
+    <main class="container mx-auto px-4 pt-24 pb-16 min-h-screen">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-white py-6 border-t border-secondary/30">
+        <div class="container mx-auto px-4 text-center text-gray-600">
+            <div class="mb-4">
+                <a href="#" class="text-primary hover:text-accent mx-2 transition-colors">
+                    <i class="fa fa-weibo text-xl"></i>
+                </a>
+                <a href="#" class="text-primary hover:text-accent mx-2 transition-colors">
+                    <i class="fa fa-wechat text-xl"></i>
+                </a>
+                <a href="#" class="text-primary hover:text-accent mx-2 transition-colors">
+                    <i class="fa fa-github text-xl"></i>
+                </a>
+            </div>
+            <p>&copy; {% now "Y" %} 课程推荐平台 - 点亮学习之旅</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 移动端菜单切换
+        document.getElementById('menuBtn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 10) {
+                navbar.classList.add('py-2', 'shadow-md');
+                navbar.classList.remove('py-3');
+            } else {
+                navbar.classList.add('py-3');
+                navbar.classList.remove('py-2', 'shadow-md');
+            }
+        });
+    </script>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

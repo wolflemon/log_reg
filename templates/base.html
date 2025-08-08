@@ -1,141 +1,107 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}课程推荐平台{% endblock %}</title>
-    <!-- 引入Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 引入Font Awesome图标 -->
-    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    
-    <!-- 配置Tailwind自定义颜色和字体 -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#FF69B4', // 粉红色主色调
-                        secondary: '#FFB6C1', // 浅粉色
-                        accent: '#FF1493', // 深粉色强调色
-                        light: '#FFF0F5', // 粉色背景色
-                        dark: '#333333', // 深色文本
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                    },
-                }
-            }
+    <title>{% block title %}计算机课程推荐平台{% endblock %}</title>
+
+    <!-- 公共 CSS -->
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1-dist/css/bootstrap.min.css' %}">
+    <link href="{% static 'css/vis-network.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dynamic/style.css' %}">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --text-light: #ecf0f1;
+            --text-dark: #2c3e50;
         }
-    </script>
-    
-    <!-- 自定义工具类 -->
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .content-auto {
-                content-visibility: auto;
-            }
-            .nav-shadow {
-                box-shadow: 0 4px 15px rgba(255, 105, 180, 0.15);
-            }
-            .hover-scale {
-                transition: transform 0.3s ease;
-            }
-            .hover-scale:hover {
-                transform: scale(1.03);
-            }
+        body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .container-fluid { width: 90%; }
+
+        /* 动态背景 */
+        .dynamic-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
         }
+
+        /* 导航栏（仅保留颜色/悬停核心样式） */
+        .navbar-default {
+            background-color: #ffffff75;
+            border-radius: 0;
+        }
+        .navbar-default .navbar-brand,
+        .navbar-default .navbar-nav > li > a { color: #fff; }
+        .navbar-default .navbar-nav > li > a:hover { color: #337ab7; }
+
+        
     </style>
-    
+
     {% block extra_css %}{% endblock %}
 </head>
-<body class="bg-light text-dark font-sans">
+
+<body>
+    <!-- 动态背景 -->
+    <div class="dynamic-bg">
+        <div class="container"><div class="inner-container"><div class="shape"></div></div></div>
+    </div>
+
+    {% if user.is_authenticated %}
     <!-- 导航栏 -->
-    <nav class="bg-white nav-shadow fixed w-full z-10 transition-all duration-300" id="navbar">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <!-- 网站Logo -->
-            <a href="/" class="flex items-center space-x-2 hover-scale">
-                <i class="fa fa-heart text-primary text-2xl"></i>
-                <span class="text-xl font-bold text-primary">课程推荐平台</span>
-            </a>
-            
-            <!-- 桌面端导航链接 -->
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="/" class="font-medium hover:text-primary transition-colors">首页</a>
-                {% if user.is_authenticated %}
-                    <a href="{% url 'users:profile' %}" class="font-medium hover:text-primary transition-colors">个人资料</a>
-                    <a href="{% url 'account_logout' %}" class="font-medium hover:text-primary transition-colors">退出登录</a>
-                {% else %}
-                    <a href="{% url 'account_login' %}" class="font-medium hover:text-primary transition-colors">登录</a>
-                    <a href="{% url 'account_signup' %}" class="bg-primary hover:bg-accent text-white px-4 py-2 rounded-full transition-colors">注册</a>
-                {% endif %}
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <i class="fa fa-book"></i> 计算机课程推荐平台
+                </a>
             </div>
-            
-            <!-- 移动端菜单按钮 -->
-            <button class="md:hidden text-primary text-xl" id="menuBtn">
-                <i class="fa fa-bars"></i>
-            </button>
-        </div>
-        
-        <!-- 移动端导航菜单 -->
-        <div class="md:hidden hidden bg-white absolute w-full" id="mobileMenu">
-            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
-                <a href="/" class="py-2 font-medium hover:text-primary transition-colors">首页</a>
-                {% if user.is_authenticated %}
-                    <a href="{% url 'users:profile' %}" class="py-2 font-medium hover:text-primary transition-colors">个人资料</a>
-                    <a href="{% url 'account_logout' %}" class="py-2 font-medium hover:text-primary transition-colors">退出登录</a>
-                {% else %}
-                    <a href="{% url 'account_login' %}" class="py-2 font-medium hover:text-primary transition-colors">登录</a>
-                    <a href="{% url 'account_signup' %}" class="py-2 bg-primary text-white rounded-md text-center">注册</a>
-                {% endif %}
-            </div>
-        </div>
+
+            <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/">⬅ 返回图谱</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">
+                           {{ user.username }} 个人中心 <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'account_change_password' %}">修改密码</a></li>
+                            <li><a href="{% url 'favorite_courses' %}">我的收藏夹</a></li>
+                            <li><a href="{% url 'recommend_users' %}">每日推荐</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <form method="post" action="{% url 'account_logout' %}">
+                                    {% csrf_token %}
+                                    <button type="submit" style="border:none;background:none;width:100%;text-align:left;">退出登录</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
     </nav>
+    {% endif %}
 
-    <!-- 主要内容区域 -->
-    <main class="container mx-auto px-4 pt-24 pb-16 min-h-screen">
+    <!-- 页面主体 -->
+    <div class="container-fluid">
         {% block content %}{% endblock %}
-    </main>
+    </div>
 
-    <!-- 页脚 -->
-    <footer class="bg-white py-6 border-t border-secondary/30">
-        <div class="container mx-auto px-4 text-center text-gray-600">
-            <div class="mb-4">
-                <a href="#" class="text-primary hover:text-accent mx-2 transition-colors">
-                    <i class="fa fa-weibo text-xl"></i>
-                </a>
-                <a href="#" class="text-primary hover:text-accent mx-2 transition-colors">
-                    <i class="fa fa-wechat text-xl"></i>
-                </a>
-                <a href="#" class="text-primary hover:text-accent mx-2 transition-colors">
-                    <i class="fa fa-github text-xl"></i>
-                </a>
-            </div>
-            <p>&copy; {% now "Y" %} 课程推荐平台 - 点亮学习之旅</p>
-        </div>
-    </footer>
+    <!-- 公共 JS -->
+    <script src="{% static 'js/jquery-3.7.1.js' %}"></script>
+    <script src="{% static 'plugins/bootstrap-3.4.1-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/vis-network.min.js' %}"></script>
+    <script src="{% static 'dynamic/script.js' %}"></script>
 
-    <!-- JavaScript -->
-    <script>
-        // 移动端菜单切换
-        document.getElementById('menuBtn').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // 导航栏滚动效果
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 10) {
-                navbar.classList.add('py-2', 'shadow-md');
-                navbar.classList.remove('py-3');
-            } else {
-                navbar.classList.add('py-3');
-                navbar.classList.remove('py-2', 'shadow-md');
-            }
-        });
-    </script>
-    
     {% block extra_js %}{% endblock %}
 </body>
 </html>

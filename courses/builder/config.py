@@ -1,0 +1,3 @@
+DATABASE_URI = "mysql+pymysql://root:Cristiano900@localhost:3306/mydb"
+OPENAI_API_KEY = "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"
+MOONSHOT_API_KEY = "sk-GYfUOOMi2nZ4iHqlPNBPohfGjoeDLANnKRaK9qDwBX29PQpn"

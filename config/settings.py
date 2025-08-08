@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
+'''
 #以下配置在生产环境中使用，推送时请注释开发环境配置代码并解除此段注释
 DATABASES = {
     'default': {
@@ -101,8 +101,8 @@ DATABASES = {
         'PORT': os.getenv('DB_PORT'),
     }
 }
-
 '''
+
 #以下配置在开发环境中使用，推送时请解除生产环境配置代码注释并注释此段
 DATABASES = {
     'default': {
@@ -121,7 +121,7 @@ DATABASES = {
 CSRF_COOKIE_SECURE = False  # 本地HTTP环境禁用HTTPS检查
 CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000']  # 添加信任的源
 #_______________#
-'''
+
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
@@ -212,3 +212,6 @@ LOGGING = {
 # 邮箱连接有误，先这样
 ACCOUNT_EMAIL_VERIFICATION = "none"  # 禁用邮箱验证
 ACCOUNT_EMAIL_REQUIRED = False       # 不强制要求邮箱（根据你的需求决定）
+
+MOONSHOT_API_KEY = "sk-GYfUOOMi2nZ4iHqlPNBPohfGjoeDLANnKRaK9qDwBX29PQpn"
+OPENAI_API_KEY = "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"
