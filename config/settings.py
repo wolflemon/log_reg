@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-'''
+
 #以下配置在生产环境中使用，推送时请注释开发环境配置代码并解除此段注释
 DATABASES = {
     'default': {
@@ -101,8 +101,8 @@ DATABASES = {
         'PORT': os.getenv('DB_PORT'),
     }
 }
-'''
 
+'''
 #以下配置在开发环境中使用，推送时请解除生产环境配置代码注释并注释此段
 DATABASES = {
     'default': {
@@ -121,7 +121,7 @@ DATABASES = {
 CSRF_COOKIE_SECURE = False  # 本地HTTP环境禁用HTTPS检查
 CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000']  # 添加信任的源
 #_______________#
-
+'''
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
