@@ -751,7 +751,7 @@ def recommend_users(request):
     query = """
     MATCH (r:Root {is_public: true})
     WHERE r.user_id <> $current_user_id
-    OPTIONAL MATCH (r)<-[:SUB_TOPIC_OF|BELONGS_TO*]-(desc)   
+    OPTIONAL MATCH (r)<-[:SUB_TOPIC_OF|BELONGS_TO|SELF_DEFINE_REL*]-(desc)   
     WITH r.user_id   AS user_id,
         r.username  AS username,
         count(desc) + 1 AS node_count,   
