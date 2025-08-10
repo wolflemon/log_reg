@@ -93,6 +93,16 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         };
       });
+
+      // 点击节点 → 直接跳转
+      network.on('click', function (params) {
+      if (params.nodes.length > 0) {
+          const nodeId = params.nodes[0];
+          // 直接跳转到查看页面
+          window.location.href = `/click-node/?node_id=${nodeId}`;
+          params.event.preventDefault();
+      }
+});
     })
     .catch(err => {
       console.error(err);
